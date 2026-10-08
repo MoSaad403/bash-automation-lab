@@ -67,7 +67,8 @@ check_servers() {
     done
 }
 
-while getopts ":f:b:x:s" option; do
+
+while getopts ":f:b:x:sr" option; do
     case "$option" in
         f)
             check_logs "$@"
@@ -82,14 +83,16 @@ while getopts ":f:b:x:s" option; do
             check_servers
             ;;
         r)
-             final_report
+            final_report
             ;;
         *)
-            echo "Usage: $0 [-f] [-b] [-x] [-s]"
+            echo "Usage: $0 [-f] [-b] [-x] [-s] [-r]"
             exit 1
             ;;
     esac
 done
+
+shift $((OPTIND - 1))  
 
 final_report() {
     echo
