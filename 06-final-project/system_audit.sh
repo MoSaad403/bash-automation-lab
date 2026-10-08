@@ -1,5 +1,3 @@
-#!/usr/bin/bash
-
 #!/usr/bin/env bash
 
 servers=(
@@ -68,3 +66,24 @@ check_servers() {
         fi
     done
 }
+
+while getopts ":f:b:x:s" option; do
+    case "$option" in
+        f)
+            check_logs "$@"
+            ;;
+        b)
+            backup_dirs "$@"
+            ;;
+        x)
+            check_scripts "$@"
+            ;;
+        s)
+            check_servers
+            ;;
+        *)
+            echo "Usage: $0 [-f] [-b] [-x] [-s]"
+            exit 1
+            ;;
+    esac
+done
