@@ -81,9 +81,23 @@ while getopts ":f:b:x:s" option; do
         s)
             check_servers
             ;;
+        r)
+             final_report
+            ;;
         *)
             echo "Usage: $0 [-f] [-b] [-x] [-s]"
             exit 1
             ;;
     esac
 done
+
+final_report() {
+    echo
+    echo "========== Report =========="
+    echo "Logs Checked: $log_count"
+    echo "Scripts Checked: $script_count"
+    echo "Backups Created: $backup_count"
+    echo "Servers Online: $online_count"
+    echo "Servers Offline: $offline_count"
+    echo "============================"
+}
